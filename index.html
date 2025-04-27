@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luan & Isabely</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #ffdde1, #ee9ca7);
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+        img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 20px;
+            margin: 20px 0;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 0.5em;
+        }
+        p {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+        .contador {
+            font-size: 1.5em;
+            margin: 20px 0;
+        }
+        .button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            background-color: #ff758c;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Luan & Isabely</h1>
+        <img src="foto.jpg" alt="Luan e Isabely">
+        <p>Nos conhecemos em 14 de outubro de 2024.</p>
+        <p>Pedido de namoro: 08 de dezembro de 2024.</p>
+        <p>"Nossos caminhos sempre se cruzaram, mas só se uniram quando Deus quis escrever nossa história."</p>
+        <div class="contador" id="contador"></div>
+        <a class="button" href="https://open.spotify.com/track/2xvW7cFF9CWVDgNp4zl3gx" target="_blank">Ouvir "Dois Corações" 🎶</a>
+    </div>
+
+    <script>
+        const inicio = new Date('2024-12-08T00:00:00');
+
+        function atualizaContador() {
+            const agora = new Date();
+            let diff = agora - inicio;
+
+            const anos = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+            diff -= anos * (1000 * 60 * 60 * 24 * 365.25);
+            const meses = Math.floor(diff / (1000 * 60 * 60 * 24 * 30.44));
+            diff -= meses * (1000 * 60 * 60 * 24 * 30.44);
+            const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+            diff -= dias * (1000 * 60 * 60 * 24);
+            const horas = Math.floor(diff / (1000 * 60 * 60));
+            diff -= horas * (1000 * 60 * 60);
+            const minutos = Math.floor(diff / (1000 * 60));
+            diff -= minutos * (1000 * 60);
+            const segundos = Math.floor(diff / 1000);
+
+            document.getElementById('contador').innerHTML =
+                `${anos} anos, ${meses} meses, ${dias} dias, ${horas} horas, ${minutos} minutos, ${segundos} segundos`;
+        }
+
+        setInterval(atualizaContador, 1000);
+        atualizaContador();
+    </script>
+</body>
+</html>
