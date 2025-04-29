@@ -4,86 +4,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luan & Isabely</title>
+    <title>Luan e Isabely</title>
     <style>
-        body {
+        html, body {
             margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(to right, #fffff0, #ffffe0);
-            color: #333;
+            color: white;
             text-align: center;
+            background: black;
+        }
+        .background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        .content {
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
             padding: 20px;
         }
-        .container {
-            max-width: 800px;
-            margin: auto;
+        .photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            margin-bottom: 20px;
         }
-        img {
-            width: 100%;
-            max-width: 400px;
-            border-radius: 20px;
-            margin: 20px 0;
-        }
-        h1 {
-            font-size: 3em;
-            margin-bottom: 0.5em;
-        }
-        p {
-            font-size: 1.7em;
-            margin: 10px 0;
-        }
-        .contador {
-            font-size: 1.5em;
-            margin: 20px 0;
-        }
-        .button {
+        .counter {
+            font-size: 24px;
             margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 1.2em;
-            background-color: #ff758c;
-            color: white;
-            text-decoration: none;
-            border-radius: 10px;
-            display: inline-block;
+        }
+        iframe {
+            margin-top: 30px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Luan & Isabely</h1>
-        <img src="foto.jpg" alt="Luan e Isabely">
-        <p><p style="font-family: Brush Script MT, Brush Script Std;">Nos conhecemos em 14 de outubro de 2024</p></p>
-        <p><p style="font-family: Brush Script MT, Brush Script Std;">Pedido de namoro 08 de dezembro de 2024</p></p>
-        <p><p style="font-family: Brush Script MT, Brush Script Std;"> <strong>Nossos caminhos sempre se cruzaram, mas só se uniram quando Deus quis escrever nossa história</strong></p></p>
-        <div class="contador" id="contador"></div>
-        <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/277824935&color=%2337383f&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/melim-892813239" title="Melim" target="_blank" style="color: #cccccc; text-decoration: none;">Melim</a> · <a href="https://soundcloud.com/melim-892813239/dois-coracoes" title="Dois Corações (Versão Acústica)" target="_blank" style="color: #cccccc; text-decoration: none;">Dois Corações (Versão Acústica)</a></div></a>
+    <video autoplay muted loop class="background-video">
+        <source src="video.mp4" type="video/mp4">
+        Seu navegador não suporta vídeos HTML5.
+    </video>
+
+    <div class="content">
+        <img src="foto.jpg" alt="Luan e Isabely" class="photo">
+        <h1>Luan e Isabely</h1>
+        <p>Nos conhecemos em 14 de outubro de 2024</p>
+        <p>Pedido de namoro 08 de dezembro de 2024</p>
+        <p>"Nossos caminhos sempre se cruzaram, mas só se uniram quando Deus quis escrever nossa história"</p>
+
+        <div class="counter" id="counter"></div>
+
+        <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" 
+        src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/277824935&color=%2337383f&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true">
+        </iframe>
     </div>
 
     <script>
-        const inicio = new Date('2024-12-08T00:00:00');
+        const startDate = new Date('2024-12-08T00:00:00');
+        const counterElement = document.getElementById('counter');
 
-        function atualizaContador() {
-            const agora = new Date();
-            let diff = agora - inicio;
+        function updateCounter() {
+            const now = new Date();
+            const diff = now - startDate;
 
-            const anos = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
-            diff -= anos * (1000 * 60 * 60 * 24 * 365.25);
-            const meses = Math.floor(diff / (1000 * 60 * 60 * 24 * 30.44));
-            diff -= meses * (1000 * 60 * 60 * 24 * 30.44);
-            const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
-            diff -= dias * (1000 * 60 * 60 * 24);
-            const horas = Math.floor(diff / (1000 * 60 * 60));
-            diff -= horas * (1000 * 60 * 60);
-            const minutos = Math.floor(diff / (1000 * 60));
-            diff -= minutos * (1000 * 60);
-            const segundos = Math.floor(diff / 1000);
+            const seconds = Math.floor(diff / 1000) % 60;
+            const minutes = Math.floor(diff / (1000 * 60)) % 60;
+            const hours = Math.floor(diff / (1000 * 60 * 60)) % 24;
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
 
-            document.getElementById('contador').innerHTML =
-                `${anos} anos, ${meses} meses, ${dias} dias, ${horas} horas, ${minutos} minutos, ${segundos} segundos`;
+            const years = Math.floor(days / 365);
+            const months = Math.floor((days % 365) / 30);
+            const remainingDays = days - (years * 365) - (months * 30);
+
+            counterElement.innerHTML = `${years} anos, ${months} meses, ${remainingDays} dias, ${hours} horas, ${minutes} minutos e ${seconds} segundos juntos!`;
         }
 
-        setInterval(atualizaContador, 1000);
-        atualizaContador();
+        setInterval(updateCounter, 1000);
+        updateCounter();
     </script>
 </body>
 </html>
+
