@@ -46,13 +46,11 @@
         iframe {
             margin-top: 30px;
         }
-    </style>
-</head>
-<body>
-    <video autoplay muted loop class="background-video">
-        <source src="video.mp4" type="video/mp4">
-        
-    </video>
+    <style>
+body {
+    background-image: url("BACKGROUD.jpg");
+}
+</style>
 
     <div class="content">
         <img src="foto.jpg" alt="Luan e Isabely" class="photo">
@@ -85,7 +83,7 @@
             const months = Math.floor((days % 365) / 30);
             const remainingDays = days - (years * 365) - (months * 30);
 
-            counterElement.innerHTML = `${years} anos, ${months} meses, ${remainingDays} dias, ${hours} horas, ${minutes} minutos e ${seconds} segundos juntos!`;
+            counterElement.innerHTML = `${years} anos ${months} meses ${remainingDays} dias ${hours} horas ${minutes} minutos e ${seconds} segundos juntos!`;
         }
 
         setInterval(updateCounter, 1000);
